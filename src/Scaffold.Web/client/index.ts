@@ -1,12 +1,9 @@
 //Import signalr package
 const signalR = require("@microsoft/signalr");
-import { CustomLogger } from "./customLogger"
 
 //Create connection
 let connection = new signalR.HubConnectionBuilder()
-    .configureLogging(signalR.LogLevel.Trace)
-    .configureLogging(new CustomLogger())
-    .withUrl("/hubs/view")
+    .withUrl("/hubs/view", { transport : signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.ServerSentEvents })
     .build();
 
 //on view update message form client
