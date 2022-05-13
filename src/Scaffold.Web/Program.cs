@@ -1,4 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddFilter("Microsoft.AspNetCore.SignalR", LogLevel.Trace);
+builder.Logging.AddFilter("Microsoft.AspNetCore.Http.Connections", LogLevel.Trace);
+
+
 builder.Services.AddSignalR();
 
 var app = builder.Build();
